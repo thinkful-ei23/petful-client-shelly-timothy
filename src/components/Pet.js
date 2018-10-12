@@ -6,26 +6,26 @@ export default function Pets(props) {
 		<div className="pet-container">
 			<section className="pet-section">
 				<header className="pet-header">
-					<h2>{props.value.name}</h2>
+					<h2>{props.pet.name}</h2>
 					<img
-						src={props.value.imageURL}
+						src={props.pet.imageURL}
 						className="image"
-						alt={props.value.imageDescription}
+						alt={props.pet.imageDescription}
 					/>
 				</header>
 
 				<main>
 					<dl>
 						<dt>Sex </dt>
-						<dd>{props.value.sex}</dd>
+						<dd>{props.pet.sex}</dd>
 						<dt>Age </dt>
-						<dd>{props.value.age}</dd>
+						<dd>{props.pet.age}</dd>
 						<dt>Breed </dt>
-						<dd>{props.value.breed}</dd>
+						<dd>{props.pet.breed}</dd>
 						<dt>Story </dt>
-						<dd>{props.value.story} </dd>
+						<dd>{props.pet.story} </dd>
 					</dl>
-					<button className="adopt">Adopt</button>
+					<button onClick={e => props.onClick(e)}>Adopt</button>
 				</main>
 			</section>
 		</div>

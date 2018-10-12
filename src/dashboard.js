@@ -31,12 +31,24 @@ export default class Dashboard extends React.Component {
 		};
 	}
 
+	onAdoptPet(e) {
+		console.log('Adopt button was clicked');
+	}
+
 	render() {
-		console.log(this.state.dogToAdopt, this.state.catToAdopt);
+		// console.log(this.state.dogToAdopt, this.state.catToAdopt);
 		return (
 			<div className="pet-adoption">
-				<Pet value={this.state.dogToAdopt} />
-				<Pet value={this.state.catToAdopt} />
+				<Pet
+					value={this.state.dogToAdopt.name}
+					pet={this.state.dogToAdopt}
+					onClick={e => this.onAdoptPet(e)}
+				/>
+				<Pet
+					value={this.state.catToAdopt.name}
+					pet={this.state.catToAdopt}
+					onClick={e => this.onAdoptPet(e)}
+				/>
 			</div>
 		);
 	}
