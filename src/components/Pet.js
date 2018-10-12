@@ -1,33 +1,31 @@
 import React from 'react';
 
-export default function Pets(props) {
-	// console.log(`In pets function ${props.value}`);
-	return (
-		<div className="pet-container">
-			<section className="pet-section">
-				<header className="pet-header">
-					<h2>{props.pet.name}</h2>
-					<img
-						src={props.pet.imageURL}
-						className="image"
-						alt={props.pet.imageDescription}
-					/>
-				</header>
+export default function Pet(props) {
+  // console.log(props);
+  if (!props.Pet) {
+    return <p>No more pets to show</p>;
+  }
 
-				<main>
-					<dl>
-						<dt>Sex </dt>
-						<dd>{props.pet.sex}</dd>
-						<dt>Age </dt>
-						<dd>{props.pet.age}</dd>
-						<dt>Breed </dt>
-						<dd>{props.pet.breed}</dd>
-						<dt>Story </dt>
-						<dd>{props.pet.story} </dd>
-					</dl>
-					<button onClick={e => props.onClick(e)}>Adopt</button>
-				</main>
-			</section>
-		</div>
-	);
+  return (
+    <section className="pet-section">
+      <header>
+        <h2>{props.Pet.name}</h2>
+        <img src={props.Pet.imageURL} alt={props.Pet.imageDescription} />
+      </header>
+      <main>
+        <h3>More about {props.Pet.name}</h3>
+        <dl>
+          <dt>Sex:</dt>
+          <dd>{props.Pet.sex}</dd>
+          <dt>Age:</dt>
+          <dd>{props.Pet.age}</dd>
+          <dt>Breed:</dt>
+          <dd>{props.Pet.breed}</dd>
+          <dt>Story:</dt>
+          <dd>{props.Pet.story}</dd>
+        </dl>
+        <button onClick={(e) => props.onAdoptPet(e)}>Adopt</button>
+      </main>
+    </section>
+  );
 }
