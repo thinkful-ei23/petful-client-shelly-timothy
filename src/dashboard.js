@@ -1,60 +1,54 @@
 import React from 'react';
+import Pet from './components/Pet';
+import { connect } from 'react-redux';
+import { fetchCat, fetchDog } from './actions';
+import './grid.css';
 
-export default function Dashboard(props) {
-  const { dogToAdopt } = props;
-  const { catToAdopt } = props;
+let catToAdopt = {
+  imageURL: 'https://static.pexels.com/photos/20787/pexels-photo.jpg',
+  imageDescription:
+    'Grey siamese cat with bright green eyes, looking up to the camera.',
+  name: 'Tina',
+  sex: 'female',
+  age: 3,
+  breed: 'Siamese',
+  story: 'Abandoned by previous owner.'
+};
 
-  return (
-    <div className="container">
-      <section className="dog-section">
-        <header className="dog-header">
-          <h2>{dogToAdopt.name}</h2>
-          <img
-            src={dogToAdopt.imageURL}
-            className="image"
-            alt={dogToAdopt.imageDescription}
-          />
-        </header>
+let dogToAdopt = {
+  imageURL:
+    'http://www.dogster.com/wp-content/uploads/2015/05/Cute%20dog%20listening%20to%20music%201_1.jpg',
+  imageDescription:
+    'A smiling golden-brown golden retreiver listening to music.',
+  name: 'Zeus',
+  sex: 'Male',
+  age: 3,
+  breed: 'Golden retriever',
+  story: 'Owner passed away.'
+};
 
-        <main>
-          <dl>
-            <dt>Sex </dt>
-            <dd>{dogToAdopt.sex}</dd>
-            <dt>Age </dt>
-            <dd>{dogToAdopt.age}</dd>
-            <dt>Breed </dt>
-            <dd> {dogToAdopt.breed}</dd>
-            <dt>Story </dt>
-            <dd>{dogToAdopt.story} </dd>
-          </dl>
-          <button className="adopt">Adopt</button>
-        </main>
-      </section>
+//ddd
 
-      <section className="cat-section">
-        <header className="cat-header">
-          <h2>{catToAdopt.name}</h2>
-          <img
-            src={catToAdopt.imageURL}
-            className="image"
-            alt={catToAdopt.imageDescription}
-          />
-        </header>
+export class Dashboard extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(fetchCat());
+    this.props.dispatch(fetchDog());
+  }
 
-        <main>
-          <dl>
-            <dt>Sex </dt>
-            <dd>{catToAdopt.sex}</dd>
-            <dt>Age </dt>
-            <dd>{catToAdopt.age}</dd>
-            <dt>Breed </dt>
-            <dd> {catToAdopt.breed}</dd>
-            <dt>Story </dt>
-            <dd>{catToAdopt.story} </dd>
-          </dl>
-          <button className="adopt">Adopt</button>
-        </main>
-      </section>
-    </div>
-  );
+  handleOnAdoptPet() {
+    console.log('You tried to adopt a pet!');
+  }
+
+  render() {
+    return (
+      <main className="row">
+        <h1>
+          Save a <span>Life</span>. Adopt a Pet!
+        </h1>
+        <Pet Pet={catToAdopt} onAdoptPet={() => this.handleOnAdoptPet()} />
+        <Pet Pet={dogToAdopt} onAdoptPet={() => this.handleOnAdoptPet()} />
+      </main>
+    );
+  }
 }
+export default connect()(Dashboard);
