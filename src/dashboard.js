@@ -1,5 +1,6 @@
 import React from 'react';
 import Pet from './components/Pet';
+import './dashboard.css';
 
 export default class Dashboard extends React.Component {
 	constructor(props) {
