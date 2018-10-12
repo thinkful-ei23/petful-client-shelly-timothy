@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import './index.css';
+
 import Dashboard from './Dashboard';
 
 ReactDOM.render(
@@ -11,3 +12,4 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+

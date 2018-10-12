@@ -7,7 +7,7 @@ export default function Pet(props) {
   }
 
   return (
-    <section className="col-6">
+    <section className="pet-section">
       <header>
         <h2>{props.Pet.name}</h2>
         <img src={props.Pet.imageURL} alt={props.Pet.imageDescription} />
@@ -24,7 +24,7 @@ export default function Pet(props) {
           <dt>Story:</dt>
           <dd>{props.Pet.story}</dd>
         </dl>
-        <button onClick={() => props.onAdoptPet()}>Adopt</button>
+        <button onClick={(e) => props.onAdoptPet(e)}>Adopt</button>
       </main>
     </section>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import Pet from './components/Pet';
+
 import { connect } from 'react-redux';
 import {
   fetchCat,
