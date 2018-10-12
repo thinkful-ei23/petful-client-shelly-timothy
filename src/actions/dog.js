@@ -24,7 +24,7 @@ export const adoptDog = () => ({
 
 export const fetchDog = () => dispatch => {
   dispatch(fetchDogRequest());
-  return fetch(`${API_BASE_URL}/cat/`)
+  return fetch(`${API_BASE_URL}/dogs`)
     .then(res => {
       if (!res.ok) {
         throw new Error(res.statusText);
@@ -40,7 +40,7 @@ export const fetchDog = () => dispatch => {
 };
 
 export const fetchAdoptDog = () => dispatch => {
-  return fetch(`${API_BASE_URL}/dog/`, {
+  return fetch(`${API_BASE_URL}/dogs`, {
     method: 'DELETE'
   })
     .then(() => {

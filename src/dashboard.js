@@ -1,33 +1,13 @@
 import React from 'react';
 import Pet from './components/Pet';
 import { connect } from 'react-redux';
-import { fetchCat, fetchDog } from './actions';
+import {
+  fetchCat,
+  fetchDog,
+  fetchAdoptCat,
+  fetchAdoptDog
+} from './actions/index';
 import './grid.css';
-
-let catToAdopt = {
-  imageURL: 'https://static.pexels.com/photos/20787/pexels-photo.jpg',
-  imageDescription:
-    'Grey siamese cat with bright green eyes, looking up to the camera.',
-  name: 'Tina',
-  sex: 'female',
-  age: 3,
-  breed: 'Siamese',
-  story: 'Abandoned by previous owner.'
-};
-
-let dogToAdopt = {
-  imageURL:
-    'http://www.dogster.com/wp-content/uploads/2015/05/Cute%20dog%20listening%20to%20music%201_1.jpg',
-  imageDescription:
-    'A smiling golden-brown golden retreiver listening to music.',
-  name: 'Zeus',
-  sex: 'Male',
-  age: 3,
-  breed: 'Golden retriever',
-  story: 'Owner passed away.'
-};
-
-//ddd
 
 export class Dashboard extends React.Component {
   componentDidMount() {
@@ -35,20 +15,46 @@ export class Dashboard extends React.Component {
     this.props.dispatch(fetchDog());
   }
 
-  handleOnAdoptPet() {
-    console.log('You tried to adopt a pet!');
+  handleOnAdoptCat() {
+    this.props.dispatch(fetchAdoptCat());
+    // this.props.dispatch(fetchCat());
+  }
+
+  handleOnAdoptDog() {
+    this.props.dispatch(fetchAdoptDog());
+    // this.props.dispatch(fetchDog());
   }
 
   render() {
+    // if (!this.props.catToAdopt.data) {
+    //   return <p>Loading...</p>
+    // }
+    // if (!this.props.dogToAdopt.data){
+    //   return <p>Loading...</p>
+    // }
+    // console.log(this.props.catToAdopt.data)
+    // console.log(this.props.dogToAdopt.data)
     return (
       <main className="row">
         <h1>
           Save a <span>Life</span>. Adopt a Pet!
         </h1>
-        <Pet Pet={catToAdopt} onAdoptPet={() => this.handleOnAdoptPet()} />
-        <Pet Pet={dogToAdopt} onAdoptPet={() => this.handleOnAdoptPet()} />
+        <Pet
+          Pet={this.props.catToAdopt.data}
+          onAdoptPet={() => this.handleOnAdoptCat()}
+        />
+        <Pet
+          Pet={this.props.dogToAdopt.data}
+          onAdoptPet={() => this.handleOnAdoptDog()}
+        />
       </main>
     );
   }
 }
-export default connect()(Dashboard);
+
+const mapStateToProps = (state, props) => ({
+  catToAdopt: state.cat,
+  dogToAdopt: state.dog
+});
+
+export default connect(mapStateToProps)(Dashboard);
