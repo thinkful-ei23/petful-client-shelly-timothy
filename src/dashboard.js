@@ -1,60 +1,43 @@
 import React from 'react';
+import Pet from './components/Pet';
 
-export default function Dashboard(props) {
-  const { dogToAdopt } = props;
-  const { catToAdopt } = props;
+export default class Dashboard extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			dogToAdopt: {
+				imageURL:
+					'http://www.dogster.com/wp-content/uploads/2015/05/Cute%20dog%20listening%20to%20music%201_1.jpg',
+				imageDescription:
+					'A smiling golden-brown golden retreiver listening to music.',
+				name: 'Zeus',
+				sex: 'Male',
+				age: 3,
+				breed: 'Golden Retriever',
+				story: 'Owner Passed away'
+			},
 
-  return (
-    <div className="container">
-      <section className="dog-section">
-        <header className="dog-header">
-          <h2>{dogToAdopt.name}</h2>
-          <img
-            src={dogToAdopt.imageURL}
-            className="image"
-            alt={dogToAdopt.imageDescription}
-          />
-        </header>
+			catToAdopt: {
+				imageURL:
+					'https://assets3.thrillist.com/v1/image/2622128/size/tmg-slideshow_l.jpg',
+				imageDescription:
+					'Orange bengal cat with black stripes lounging on concrete.',
+				name: 'Fluffy',
+				sex: 'Female',
+				age: 2,
+				breed: 'Bengal',
+				story: 'Thrown on the street'
+			}
+		};
+	}
 
-        <main>
-          <dl>
-            <dt>Sex </dt>
-            <dd>{dogToAdopt.sex}</dd>
-            <dt>Age </dt>
-            <dd>{dogToAdopt.age}</dd>
-            <dt>Breed </dt>
-            <dd> {dogToAdopt.breed}</dd>
-            <dt>Story </dt>
-            <dd>{dogToAdopt.story} </dd>
-          </dl>
-          <button className="adopt">Adopt</button>
-        </main>
-      </section>
-
-      <section className="cat-section">
-        <header className="cat-header">
-          <h2>{catToAdopt.name}</h2>
-          <img
-            src={catToAdopt.imageURL}
-            className="image"
-            alt={catToAdopt.imageDescription}
-          />
-        </header>
-
-        <main>
-          <dl>
-            <dt>Sex </dt>
-            <dd>{catToAdopt.sex}</dd>
-            <dt>Age </dt>
-            <dd>{catToAdopt.age}</dd>
-            <dt>Breed </dt>
-            <dd> {catToAdopt.breed}</dd>
-            <dt>Story </dt>
-            <dd>{catToAdopt.story} </dd>
-          </dl>
-          <button className="adopt">Adopt</button>
-        </main>
-      </section>
-    </div>
-  );
+	render() {
+		console.log(this.state.dogToAdopt, this.state.catToAdopt);
+		return (
+			<div className="pet-adoption">
+				<Pet value={this.state.dogToAdopt} />
+				<Pet value={this.state.catToAdopt} />
+			</div>
+		);
+	}
 }
