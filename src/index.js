@@ -4,12 +4,11 @@ import { Provider } from 'react-redux';
 import store from './store';
 import './index.css';
 
-import Dashboard from './Dashboard';
+import Dashboard from './dashboard';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Dashboard />
-  </Provider>,
-  document.getElementById('root')
+	<Provider store={store}>
+		<Dashboard />
+	</Provider>,
+	document.getElementById('root')
 );
-
